@@ -13,10 +13,10 @@ SNAKE_Y = 3
 TIMEOUT = 100
 
 class Snake(object):
-    """docstring for Snake."""
+    # docstring for Snake.
 
-    #This is the dictionary for key inputs
-    #reverse direction map
+    # This is the dictionary for key inputs
+    # reverse direction map
     REV_DIR_MAP = {
         KEY_UP: KEY_DOWN,
         KEY_DOWN: KEY_UP,
