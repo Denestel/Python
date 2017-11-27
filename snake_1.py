@@ -95,7 +95,7 @@ class Snake(object):
     #Make the render function
     def render(self):
         for body in self.body_list:
-            self.wondow.addstr(body.y, body.x, body.char)
+            self.window.addstr(body.y, body.x, body.char)
 
     @property
     #Define the snake head
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     curses.beep()
 
     #Make the curses window
-    window = curses.newin(HEIGHT, WIDTH, 0, 0)
+    window = curses.newwin(HEIGHT, WIDTH, 0, 0)
     #Set window time out
     window.timeout(TIMEOUT)
     #Set keypad
@@ -199,5 +199,29 @@ if __name__ == '__main__':
 
         window.addstr(0, 5, snake.score)
         event = window.getch()
+
+        #allows the user to exit with the ESC button
+        if event == 27:
+            break
+
+        #this allows us to move the snake
+        if event in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]:
+            snake.change_direction(event)
+
+        #this allows the snake to eat the food and then reset the foods position
+        if snake.head.x == food.x and snake.head.y == food.y:
+            snake.eat_food(food)
+
+        #this allows us to pause the game
+        if event == 32:
+            key = -1
+            while key != 32:
+                key = window.getch()
+
+
+        snake.update()
+        #handles collisions
+        if snake.collided:
+            break
 
     curses.endwin()
