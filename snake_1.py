@@ -96,7 +96,7 @@ class Snake(object):
     # Make the render function
     def render(self):
         for body in self.body_list:
-            self.wondow.addstr(body.y, body.x, body.char)
+            self.window.addstr(body.y, body.x, body.char)
 
     @property
     # Define the snake head
